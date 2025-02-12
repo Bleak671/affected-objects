@@ -1,0 +1,9 @@
+.vs/
+bin/
+obj/Debug/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
+obj/Debug/affected-objects.csproj.AssemblyReference.cache
+obj/Debug/affected-objects.csproj.CoreCompileInputs.cache
+obj/Debug/affected-objects.csproj.FileListAbsolute.txt
+obj/Debug/affected-objects.exe
+obj/Debug/affected-objects.pdb
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
