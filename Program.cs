@@ -21,6 +21,7 @@ namespace affected_objects
         {
             { ".js","js:" },
             { ".cs","cs:" },
+            { "/data.json","data:" },
             { ".sql","sql:" }
         };
         static void Main(string[] args)
@@ -44,9 +45,9 @@ namespace affected_objects
             var result = "";
             foreach (string s in strings)
             {
-                if (s.EndsWith(".js") || s.EndsWith(".cs") || s.EndsWith(".sql"))
+                var textArr = s.Split('/');
+                if (s.EndsWith(".js") || s.EndsWith(".cs") || s.EndsWith(".sql") || s.EndsWith("/data.json"))
                 {
-                    var textArr = s.Split('/');
                     if (!subResult.Keys.Any(e => e == textArr[1]))
                     {
                         subResult.Add(textArr[1], new List<string>());
@@ -62,16 +63,25 @@ namespace affected_objects
                     }
                     string fileStringK = "";
                     string fileStringV = "";
+                    string name = "";
                     foreach (var fileExt in fileMapping.Keys)
                     {
                         if (s.EndsWith(fileExt))
                         {
                             fileStringK = fileExt;
                             fileStringV = fileMapping[fileExt];
+                            if (fileStringV == "data:")
+                            {
+                                name = textArr[textArr.Length - 2];
+                            }
+                            else
+                            {
+                                name = textArr[textArr.Length - 1].Replace(fileStringK, "");
+                            }
                         }
                     }
 
-                    subResult[textArr[1]].Add($"{fileStringV} *{textArr[textArr.Length - 1].Replace(fileStringK, "")}* {opString}\n");
+                    subResult[textArr[1]].Add($"{fileStringV} *{name}* {opString}\n");
                 }
             }
 
