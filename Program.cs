@@ -81,13 +81,13 @@ namespace affected_objects
                         }
                     }
 
-                    subResult[textArr[1]].Add($"{fileStringV} *{name}* {opString}\n");
+                    subResult[textArr[1]].Add($"{fileStringV} *{name}* {opString}{System.Environment.NewLine}{System.Environment.NewLine}");
                 }
             }
 
             foreach (string pkg in subResult.Keys)
             {
-                result += $"pkg: *{pkg}*\n";
+                result += $"pkg: *{pkg}*{System.Environment.NewLine}{System.Environment.NewLine}";
                 foreach (string file in subResult[pkg]) 
                 {
                     result += file;
